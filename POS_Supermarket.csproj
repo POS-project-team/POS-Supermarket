@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <RootNamespace>POS_Supermarket</RootNamespace>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Interfaces\IUserRepository.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\Base\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Interfaces\User\IUserRepository.cs" />
+  </ItemGroup>
+
+</Project>
