@@ -8,5 +8,4 @@ namespace POS_Supermarket.Enum
         User
     }
 
-
 }

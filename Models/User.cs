@@ -1,12 +1,11 @@
-﻿using System;
-using POS_Supermarket.Enum;
+﻿using POS_Supermarket.Enum;
+using POS_Supermarket.Models.Base;
 
 namespace POS_Supermarket.Models;
-public class User
+public class User:AuditableEntity
 {
-    public int ID{ get; set; }
-    public string UserName{ get; set; }
-    public string Password{ get; set; }
+    public string UserName { get; set; } = string.Empty;
+    public string Password{ get; set; } = string.Empty;
     public UserRole Role{ get; set; }
     public DateTime Created_at{ get; set; }
     public string Phone_number { get; set; } = null!;
