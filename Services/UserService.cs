@@ -12,7 +12,7 @@ public class UserService : IUserServices
         throw new NotImplementedException();
     }
 
-    public Task<User> GetUserByUserId(int Id)
+    public Task<User> GetUserById(int Id)
     {
         throw new NotImplementedException();
     }
