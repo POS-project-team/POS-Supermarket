@@ -7,7 +7,7 @@ public class UserService : IUserServices
         throw new NotImplementedException();
     }
 
-    public Task<bool> DeleteUser(string UserName)
+    public Task<bool> DeleteUser(int Id)
     {
         throw new NotImplementedException();
     }
