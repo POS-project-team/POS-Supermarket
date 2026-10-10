@@ -8,8 +8,8 @@ public class User:AuditableEntity
     public string Password{ get; set; } = string.Empty;
     public UserRole Role{ get; set; }
     public DateTime Created_at{ get; set; }
-    public string Phone_number { get; set; } = null!;
     public decimal? Salary { get; set; } = null;
+    public bool IsActive { get; set; }
 
 }
 
