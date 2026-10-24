@@ -32,13 +32,13 @@ public class UserService(IUserRepository repository) : IUserServices
         return await repository.GetUserById(Id);
     }
 
-    public Task<IEnumerable<User>> GetPage(int Page = 1,int PageSize = 10)
+    public async Task<IEnumerable<User>> GetPage(int Page = 1,int PageSize = 10)
     {
-       return repository.GetUsersAsync(Page,PageSize,ColumnSearchTypes.Id);
+       return await repository.GetUsersAsync(Page,PageSize,ColumnSearchTypes.Id);
     }
-    public Task<IEnumerable<User>> GetUsers(int Page,int PageSize,string search)
+    public async Task<IEnumerable<User>> GetUsers(int Page,int PageSize,string search)
     {
-        return repository.GetUsersAsync(Page, PageSize, ColumnSearchTypes.UserName,search);
+        return await repository.GetUsersAsync(Page, PageSize, ColumnSearchTypes.UserName,search);
     }
 
     public async Task<bool> IsUserExsist(string UserName, string Password)

@@ -1,11 +1,26 @@
 using POS_Supermarket.Enum;
 using POS_Supermarket.Models;
 
-public class UserController(UserService service)
+public class UserController(IUserServices service)
 {
-    public void HandleLoginUser(string UserName,string Password)
+    public async Task HandleLoginUser(string UserName,string Password)
     {
-        service.IsUserExsist(UserName, Password);
+       UserName = UserName.Trim();
+       Password = Password.Trim();
+
+       if(string.IsNullOrWhiteSpace(UserName)|| string.IsNullOrWhiteSpace(Password))
+       {
+            _Print("UserName Or Password Empty");
+            return;
+       }
+
+       if(await service.IsUserExsist(UserName, Password))
+       {
+            _Print("Login Sucsses");
+
+       }
+            _Print("UserName Or Password is worng");
+
     }
     public async Task HandleAddUser(string UserName,string Password,int RoleValue,decimal salary)
     {
@@ -56,5 +71,20 @@ public class UserController(UserService service)
             //print
 
        }
+    }
+    public async Task HandleDeleteUser(int Id)
+    {
+        if(await service.DeleteUser(Id))
+        {
+            _Print($"Delete User {Id} Sucsses");
+        }else
+        {
+            _Print($"Delete User Fail");
+        }
+    }
+    public async Task Handle
+    private void _Print(string message)
+    {
+
     }
 }

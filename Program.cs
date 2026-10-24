@@ -17,8 +17,7 @@ static class Program
        
         var services = new ServiceCollection();
        
-        services.AddTransient<MainForm>();
-
+        
 
         using (var serviceProvider = services.BuildServiceProvider())
         {
