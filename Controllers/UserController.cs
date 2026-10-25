@@ -7,8 +7,10 @@ public class UserController(UserService service)
     {
         service.IsUserExsist(UserName, Password);
     }
-    public void HandleAddUser(string UserName,string Password,int RoleValue,string PhoneNumber,decimal salary)
+    public async Task HandleAddUser(string UserName,string Password,int RoleValue,decimal salary)
     {
+        UserName = UserName.Trim();
+        Password = Password.Trim();
 
         //check data here
 
@@ -17,18 +19,42 @@ public class UserController(UserService service)
             role = (UserRole)RoleValue;
         }
         else
-            role = UserRole.User;
+        {
+            //print
+            return;
+        }
+
+        if (string.IsNullOrEmpty(UserName) || string.IsNullOrEmpty(Password))//string.IsNullOrEmpty(CreatedBy)
+        {
+            //print 
+            return;
+        }
+        if ((UserName.Length < 3 || UserName.Length > 500) || (Password.Length < 3 || Password.Length > 500))//string.IsNullOrEmpty(CreatedBy)
+        {
+            //print 
+            return;
+        }
 
         var user = new User
         {
             UserName = UserName,
             Password = Password,
-            Phone_number = PhoneNumber,
             Role = role,
             Created_at = DateTime.UtcNow,
             Salary = salary
-
         };
-        service.AddUser(user);
+
+        bool Sucsses = await service.AddUser(user);
+
+       if (Sucsses)
+       {
+            //print
+            
+       }
+       else
+       {
+            //print
+
+       }
     }
 }

@@ -3,7 +3,7 @@ using POS_Supermarket.Models.Base;
 
 namespace POS_Supermarket.Models
 {
-    public class Product: AuditableEntity
+    public class Product: AuditableEntityF
     {
        
         //13 charcters

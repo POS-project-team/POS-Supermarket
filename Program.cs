@@ -1,5 +1,6 @@
+using System;
+using System.Windows.Forms;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
 namespace POS_Supermarket;
 
@@ -13,24 +14,19 @@ static class Program
     {
         ApplicationConfiguration.Initialize();
 
-        // 1. ÅÚÏÇÏ æÅäÔÇÁ ÇáÜ Host ÇáÎÇÕ ÈÇáÊØÈíÞ
-        var host = Host.CreateDefaultBuilder()
-            .ConfigureServices((context, services) =>
-            {
-                services.AddTransient<MainForm>();
 
-            })
-            .Build();
+        var services = new ServiceCollection();
 
-    
-        using (host)
+        services.AddBuisnesServices();
+
+        using (var serviceProvider = services.BuildServiceProvider())
         {
-            host.Start();
+          
+            var mainForm = serviceProvider.GetRequiredService<MainForm>();
 
-    
-            var mainForm = host.Services.GetRequiredService<MainForm>();
-
+       
             Application.Run(mainForm);
         }
     }
+
 }
