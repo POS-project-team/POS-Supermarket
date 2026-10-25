@@ -1,3 +1,6 @@
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
 namespace POS_Supermarket;
 
 static class Program
@@ -8,9 +11,26 @@ static class Program
     [STAThread]
     static void Main()
     {
-        // To customize application configuration such as set high DPI settings or default font,
-        // see https://aka.ms/applicationconfiguration.
         ApplicationConfiguration.Initialize();
-        Application.Run(new MainForm());
-    }    
+
+        // 1. ÅÚÏÇÏ æÅäÔÇÁ ÇáÜ Host ÇáÎÇÕ ÈÇáÊØÈíÞ
+        var host = Host.CreateDefaultBuilder()
+            .ConfigureServices((context, services) =>
+            {
+                services.AddTransient<MainForm>();
+
+            })
+            .Build();
+
+    
+        using (host)
+        {
+            host.Start();
+
+    
+            var mainForm = host.Services.GetRequiredService<MainForm>();
+
+            Application.Run(mainForm);
+        }
+    }
 }
