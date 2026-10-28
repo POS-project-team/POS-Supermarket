@@ -1,9 +1,8 @@
 using POS_Supermarket.Enum;
+using POS_Supermarket.Interface;
 using POS_Supermarket.Models;
-using System.Drawing.Printing;
 using System.Security.Cryptography;
 using System.Text;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 public class UserService(IUserRepository repository) : IUserServices
 {
@@ -36,9 +35,10 @@ public class UserService(IUserRepository repository) : IUserServices
     {
        return repository.GetUsersAsync(Page,PageSize,ColumnSearchTypes.Id);
     }
-    public Task<IEnumerable<User>> GetUsers(int Page,int PageSize,string search)
+
+    public Task<IEnumerable<User>> GetPageWithSearch(int Page, int PageSize, string search)
     {
-        return repository.GetUsersAsync(Page, PageSize, ColumnSearchTypes.UserName,search);
+        return repository.GetUsersAsync(Page, PageSize, ColumnSearchTypes.UserName, search);
     }
 
     public async Task<bool> IsUserExsist(string UserName, string Password)
@@ -72,4 +72,5 @@ public class UserService(IUserRepository repository) : IUserServices
         }
     }
 
+    
 }
