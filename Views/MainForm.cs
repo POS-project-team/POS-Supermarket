@@ -4,8 +4,10 @@ namespace POS_Supermarket;
 
 public partial class MainForm : Form
 {
-    public MainForm()
+    Login Form;
+    public MainForm(Login f)
     {
+         Form = f;
         InitializeComponent();
     }
 
@@ -16,6 +18,6 @@ public partial class MainForm : Form
 
     private void button1_Click(object sender, EventArgs e)
     {
-        new Form2().ShowDialog();
+        Form.ShowDialog();
     }
 }
