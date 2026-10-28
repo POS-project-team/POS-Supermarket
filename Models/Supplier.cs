@@ -4,8 +4,8 @@ namespace POS_Supermarket.Models
 {
     public class Supplier: AuditableEntity
     {
-        public int SupplierName{ get; set; }
-        public int CompanyName{ get; set; }
+        public string SupplierName { get; set; } = string.Empty;
+        public string CompanyName{ get; set; } = string.Empty;
         public int PhoneNumber{ get; set; }
     }
 }

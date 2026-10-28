@@ -1,5 +1,6 @@
 using POS_Supermarket.Models;
 
+namespace POS_Supermarket.Interface;
 public interface IUserServices
 {
     public Task<bool> AddUser(User user);

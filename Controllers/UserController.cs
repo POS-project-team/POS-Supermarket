@@ -1,52 +1,60 @@
-using POS_Supermarket.Enum;
+﻿using POS_Supermarket.Enum;
+using POS_Supermarket.Interface;
+using POS_Supermarket.Interfaces;
 using POS_Supermarket.Models;
+using System.IO.Enumeration;
 
+namespace POS_Supermarket.Controller;
 public class UserController(IUserServices service)
 {
-    public async Task HandleLoginUser(string UserName,string Password)
+    public async Task HandleLoginUser(ILoginView loginView)
     {
-       UserName = UserName.Trim();
-       Password = Password.Trim();
+        string UserName = loginView.UserName.Trim();
+        string Password = loginView.Password.Trim();
 
-       if(string.IsNullOrWhiteSpace(UserName)|| string.IsNullOrWhiteSpace(Password))
-       {
-            _Print("UserName Or Password Empty");
+
+        if (string.IsNullOrEmpty(UserName) || string.IsNullOrEmpty(Password))//string.IsNullOrEmpty(CreatedBy)
+        {
+            loginView.Print("User Name Or Password Are Empty");
             return;
-       }
+        }
 
-       if(await service.IsUserExsist(UserName, Password))
-       {
-            _Print("Login Sucsses");
 
-       }
-            _Print("UserName Or Password is worng");
+        if (await service.IsUserExsist(UserName, Password))
+        {
+            loginView.Print("Login Sucsses");
+            loginView.ClearForm();
+        }
+        else
+            loginView.Print("Login Faile");
 
     }
-    public async Task HandleAddUser(string UserName,string Password,int RoleValue,decimal salary)
+    public async Task HandleAddUser(IAddNewUserView newUserView)
     {
-        UserName = UserName.Trim();
-        Password = Password.Trim();
+        string UserName = newUserView.UserName.Trim();
+        string Password = newUserView.Password.Trim();
 
         //check data here
 
         UserRole role;
-        if (Enum.IsDefined(typeof(UserRole), RoleValue)) {
-            role = (UserRole)RoleValue;
+        if (System.Enum.IsDefined(typeof(UserRole), newUserView.RoleValue))
+        {
+            role = (UserRole)newUserView.RoleValue;
         }
         else
         {
-            //print
+            newUserView.Print("ÇÎÊÇÑ ÑÞã Èíä 0 æ 1 ");
             return;
         }
 
         if (string.IsNullOrEmpty(UserName) || string.IsNullOrEmpty(Password))//string.IsNullOrEmpty(CreatedBy)
         {
-            //print 
+            newUserView.Print("ÝÇÖí");
             return;
         }
-        if ((UserName.Length < 3 || UserName.Length > 500) || (Password.Length < 3 || Password.Length > 500))//string.IsNullOrEmpty(CreatedBy)
+        if ((UserName.Length < 3 || UserName.Length > 50) || (Password.Length < 5 || Password.Length > 50))//string.IsNullOrEmpty(CreatedBy)
         {
-            //print 
+            newUserView.Print("ÚÏá ÇáØæá");
             return;
         }
 
@@ -56,35 +64,20 @@ public class UserController(IUserServices service)
             Password = Password,
             Role = role,
             Created_at = DateTime.UtcNow,
-            Salary = salary
+            CreatedBy = newUserView.CreatedBy
         };
 
         bool Sucsses = await service.AddUser(user);
 
-       if (Sucsses)
-       {
-            //print
-            
-       }
-       else
-       {
-            //print
+        if (Sucsses)
+        {
+            newUserView.Print("Êã ÇÖÇÝÉ ãÓÊÎÏã ÌÏíÏ");
 
-       }
-    }
-    public async Task HandleDeleteUser(int Id)
-    {
-        if(await service.DeleteUser(Id))
-        {
-            _Print($"Delete User {Id} Sucsses");
-        }else
-        {
-            _Print($"Delete User Fail");
         }
-    }
-    public async Task Handle
-    private void _Print(string message)
-    {
+        else
+        {
+            newUserView.Print("ÝÔáÊ ÇÖÇÝÉ ãÓÊÎÏã ÌÏíÏ");
 
+        }
     }
 }

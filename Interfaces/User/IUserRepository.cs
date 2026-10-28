@@ -1,6 +1,6 @@
-using POS_Supermarket.Enum;
 using POS_Supermarket.Models;
 
+namespace POS_Supermarket.Interface;
 public interface IUserRepository
 {
     public Task<int?> AddUserAsync(User user);

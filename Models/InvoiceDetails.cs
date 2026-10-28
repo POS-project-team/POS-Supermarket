@@ -8,6 +8,6 @@ namespace POS_Supermarket.Models
         public int InvoiceId { set; get; }
         public int ProductId { set; get; }
         public int Quantity { set; get; }
-        public int Unit_Price { set; get; }
+        public decimal Unit_Price { set; get; }
     }
 }

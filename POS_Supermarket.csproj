@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net10.0-windows7.0</TargetFramework>
+    <TargetFramework>net9.0-windows</TargetFramework>
     <RootNamespace>POS_Supermarket</RootNamespace>
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
@@ -10,21 +10,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Interfaces\IUserRepository.cs" />
+    <None Remove="secrets.json" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\Base\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Interfaces\User\IUserRepository.cs" />
-  </ItemGroup>
-
+ 
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="7.1.1" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.0" />
+  </ItemGroup>
+ 
+  <ItemGroup>
+    <Content Include="secrets.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
