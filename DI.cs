@@ -3,6 +3,7 @@ using POS_Supermarket.Controller;
 using POS_Supermarket.Interface;
 using POS_Supermarket.Interfaces;
 using POS_Supermarket.Views.UserForms;
+using POS_Supermarket.Repositories;
 
 namespace POS_Supermarket
 {
@@ -11,11 +12,14 @@ namespace POS_Supermarket
         public static ServiceCollection AddRepositories(this ServiceCollection services ,string ConnectionString)
         {
             services.AddTransient<IUserRepository>(_ => new UserRepository(ConnectionString));
+            services.AddTransient<IProductRepository>(_ => new ProductRepository(ConnectionString));
             return services;
+
         }
         public static ServiceCollection AddServices(this ServiceCollection services)
         {
             services.AddTransient<IUserServices, UserService>();
+            services.AddTransient<IProductServices, ProductServices>();
 
             return services;
         }
