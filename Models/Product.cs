@@ -15,4 +15,3 @@ namespace POS_Supermarket.Models
     }
 }
 
-
