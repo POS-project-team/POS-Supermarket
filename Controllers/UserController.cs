@@ -1,8 +1,9 @@
 ﻿using POS_Supermarket.Enum;
 using POS_Supermarket.Interface;
 using POS_Supermarket.Interfaces;
+using POS_Supermarket.Interfaces.Views;
 using POS_Supermarket.Models;
-using System.IO.Enumeration;
+
 
 namespace POS_Supermarket.Controller;
 public class UserController(IUserServices service)
@@ -43,18 +44,18 @@ public class UserController(IUserServices service)
         }
         else
         {
-            newUserView.Print("ÇÎÊÇÑ ÑÞã Èíä 0 æ 1 ");
+            newUserView.Print("choose Admin or user");
             return;
         }
 
         if (string.IsNullOrEmpty(UserName) || string.IsNullOrEmpty(Password))//string.IsNullOrEmpty(CreatedBy)
         {
-            newUserView.Print("ÝÇÖí");
+            newUserView.Print("User Name or password are empty");
             return;
         }
         if ((UserName.Length < 3 || UserName.Length > 50) || (Password.Length < 5 || Password.Length > 50))//string.IsNullOrEmpty(CreatedBy)
         {
-            newUserView.Print("ÚÏá ÇáØæá");
+            newUserView.Print("User name or password are short");
             return;
         }
 
@@ -71,13 +72,26 @@ public class UserController(IUserServices service)
 
         if (Sucsses)
         {
-            newUserView.Print("Êã ÇÖÇÝÉ ãÓÊÎÏã ÌÏíÏ");
+            newUserView.Print("Add User Sucsses");
 
         }
         else
         {
-            newUserView.Print("ÝÔáÊ ÇÖÇÝÉ ãÓÊÎÏã ÌÏíÏ");
+            newUserView.Print("Add User Fail");
 
         }
+    }
+    public async Task HandleDeleteUser(IDeleteUserView deleteUserView)
+    {
+        if (deleteUserView.AskUser($"you will delete user with {deleteUserView.UserId} ID ", "Are you sure"))
+        {
+            var sucsses = await service.DeleteUser(deleteUserView.UserId);
+
+                if (sucsses)
+                    deleteUserView.Print("Delete User Sucsses");
+                else
+                    deleteUserView.Print("Delete User Fail",null, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        
+        }  
     }
 }
