@@ -37,23 +37,26 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(314, 151);
+            textBox1.Location = new Point(359, 201);
+            textBox1.Margin = new Padding(3, 4, 3, 4);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(209, 23);
+            textBox1.Size = new Size(238, 27);
             textBox1.TabIndex = 0;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(314, 180);
+            textBox2.Location = new Point(359, 240);
+            textBox2.Margin = new Padding(3, 4, 3, 4);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(209, 23);
+            textBox2.Size = new Size(238, 27);
             textBox2.TabIndex = 1;
             // 
             // button1
             // 
-            button1.Location = new Point(373, 232);
+            button1.Location = new Point(426, 309);
+            button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
-            button1.Size = new Size(91, 38);
+            button1.Size = new Size(104, 51);
             button1.TabIndex = 2;
             button1.Text = "button1";
             button1.UseVisualStyleBackColor = true;
@@ -62,31 +65,32 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(246, 154);
+            label1.Location = new Point(265, 208);
             label1.Name = "label1";
-            label1.Size = new Size(62, 15);
+            label1.Size = new Size(78, 20);
             label1.TabIndex = 3;
             label1.Text = "UserName";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(251, 183);
+            label2.Location = new Point(287, 244);
             label2.Name = "label2";
-            label2.Size = new Size(57, 15);
+            label2.Size = new Size(70, 20);
             label2.TabIndex = 4;
             label2.Text = "Password";
             // 
             // Form2
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(914, 600);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(button1);
             Controls.Add(textBox2);
             Controls.Add(textBox1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Form2";
             Text = "Form2";
             ResumeLayout(false);
