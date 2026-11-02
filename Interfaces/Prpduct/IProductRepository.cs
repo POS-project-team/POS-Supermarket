@@ -9,7 +9,7 @@ namespace POS_Supermarket.Interfaces
         Task<bool> AddProduct(IProductRepository);
 
         Task<bool> UpdateProduct(Product Product);
-
+           
         Task<bool> DeleteProduct(int Id);
 
         Task<bool> IsProductNameExsist(string ProductName);

@@ -1,3 +1,4 @@
+
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,23 +17,21 @@ static class Program
 
         var services = new ServiceCollection();
 
-        IConfiguration configuration =
-
-            new ConfigurationBuilder()
+        IConfiguration config = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("secrets.json", false,true)
+            .AddJsonFile("secrets.json")
             .Build();
 
-        string? ConnectionString = configuration.GetConnectionString("Default");
+        string? ConnectionString = config.GetConnectionString("Default");
 
         if (ConnectionString is null)
-            throw new NullReferenceException("can't read connection string ");
+            throw new ArgumentNullException("Cant Read Connection string");
 
         services.AddBuisnesServices(ConnectionString);
 
         using (var serviceProvider = services.BuildServiceProvider())
         {
-              
+          
             var mainForm = serviceProvider.GetRequiredService<MainForm>();
 
        
