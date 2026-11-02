@@ -3,11 +3,11 @@ using POS_Supermarket.Models.Base;
 
 namespace POS_Supermarket.Models
 {
-    public class InvoiceDetails: AuditableEntity
+    public class InvoiceDetails: Entity
     {
         public int InvoiceId { set; get; }
         public int ProductId { set; get; }
         public int Quantity { set; get; }
-        public int Unit_Price { set; get; }
+        public decimal Unit_Price { set; get; }
     }
 }
