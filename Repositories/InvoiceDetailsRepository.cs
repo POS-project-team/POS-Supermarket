@@ -15,7 +15,7 @@ namespace POS_Supermarket.Repositories
 {
     public class InvoiceDetailsRepository(string ConnectionString) : IinvoiceDetailsRepository
     {
-        public async Task<IEnumerable<InvoiceDetails>> GetAllRecordesForOneInvoice(int InvoiceId)
+        public async Task<IEnumerable<InvoiceDetails>> GetAllRecordesForOneInvoiceAsync(int InvoiceId)
         {
             List<InvoiceDetails> recordes = [];
             string Query = "SELECT [Id],[Invoiceid],[Productid],[Quantity],[UnitPrice] FROM InvoiceDetails where InvoiceDetails.InvoiceId = @ID";
@@ -78,7 +78,7 @@ namespace POS_Supermarket.Repositories
 
 
         }
-        public async Task<bool> InsertAllRecordesForOneInvoice(int InvoiceId, List<InvoiceDetails> recordes)
+        public async Task<bool> InsertAllRecordesForOneInvoiceAsync(int InvoiceId, IEnumerable<InvoiceDetails> recordes)
         {
             bool Sucsses = false; 
 
