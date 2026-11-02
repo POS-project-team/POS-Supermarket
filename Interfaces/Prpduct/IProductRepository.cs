@@ -6,7 +6,7 @@ namespace POS_Supermarket.Interfaces
 {
     public interface IProductRepository
     {
-        Task<bool> AddProduct(IProductRepository);
+        Task<bool> AddProduct(Product product);
 
         Task<bool> UpdateProduct(Product Product);
            
